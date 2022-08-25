@@ -13,6 +13,8 @@
     </div>
   </div>
 
+
+
 <style>
   html {
     box-sizing: border-box;
@@ -40,8 +42,36 @@
   }
 </style>
 
-<button></button>
+
+<button>Button</button>
+
+
+
 <script>
+
+// document.body.addEventListener('click', logText);
+
+
+const divs = document.querySelectorAll('div');
+const btn = document.querySelector('button');
+
+function logText(e) {
+  console.log(this.classList.value);
+  // e.stopPropagation(); stop bubbling, no longer triggers events as it bubbles up
+}
+
+divs.forEach(div => div.addEventListener('click', logText, {
+  capture: false,
+  once: true // listens for click once and then unbinds itself to prevent future clicks
+
+}));
+
+btn.addEventListener('click', () => {
+  console.log('Click!!!');
+}, { once: true
+})
+
+
 
 </script>
 </body>
